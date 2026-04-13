@@ -1,7 +1,7 @@
 # Technova IncidentScope 2.3
 
 Structured incident evidence collection for Windows and Linux environments.
-
+https://github.com/andre-technova/InsidentScope
 ---
 
 # 🇧🇷 PT-BR
@@ -191,10 +191,6 @@ Contato: **technova.sti@outlook.com**
 
 ## Licença
 
-Defina aqui a licença mais adequada ao projeto, como por exemplo:
-
-- MIT
-- Apache-2.0
 - GPL-3.0
 - Proprietary / Internal Use
 
@@ -387,10 +383,6 @@ Contact: **technova.sti@outlook.com**
 
 ## License
 
-Define the license that best fits the project, such as:
-
-- MIT
-- Apache-2.0
 - GPL-3.0
 - Proprietary / Internal Use
 
@@ -583,9 +575,5 @@ Contacto: **technova.sti@outlook.com**
 
 ## Licencia
 
-Defina aquí la licencia más adecuada para el proyecto, por ejemplo:
-
-- MIT
-- Apache-2.0
 - GPL-3.0
 - Proprietary / Internal Use
