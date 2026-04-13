@@ -1,6 +1,3 @@
-# InsidentScope
-Technova IncidentScope: structured incident evidence collection for Windows and Linux environments.
-
 # IncidentScope
 
 **Technova IncidentScope** is a cross-platform incident evidence collection toolkit for **Windows** and **Linux** environments.
