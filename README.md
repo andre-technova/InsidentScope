@@ -1,40 +1,61 @@
-# IncidentScope
-
-**Technova IncidentScope** is a cross-platform incident evidence collection toolkit for **Windows** and **Linux** environments.
-
-It was designed to standardize evidence gathering for **unavailability analysis**, **operational investigation**, and **root cause analysis (RCA)**, generating both a **human-readable report** and a **structured JSON summary**.
+# Technova IncidentScope 2.3
 
 ---
 
-## Overview
+# 🇧🇷 README (PT-BR)
 
-IncidentScope was created to solve a very common problem in real-world IT operations:
+## Visão Geral
 
-When an incident happens, teams often collect evidence in an ad-hoc way — a few commands here, some copied logs there, maybe a screenshot, and a lot of guesswork.
+**Technova IncidentScope** é uma ferramenta de coleta estruturada de evidências para investigação de incidentes em ambientes **Linux** e **Windows**.
 
-IncidentScope changes that approach by providing a **repeatable**, **structured**, and **evidence-driven** collection process.
+O projeto foi criado para padronizar a coleta de informações técnicas durante cenários de indisponibilidade, degradação de serviço, troubleshooting operacional e análise de causa raiz (**RCA**), gerando:
 
-Instead of relying on memory, urgency, or improvisation, IncidentScope helps teams collect:
-
-- host identity
-- time window context
-- operating system context
-- virtualization context
-- logs and event evidence
-- services and process clues
-- network and port information
-- memory, CPU and storage snapshots
-- recent logons
-- reboot / shutdown evidence
-- incident timeline
-- structured auxiliary artifacts
+- um **relatório principal legível por humanos** (`.log`)
+- um **resumo estruturado em JSON** (`.json`)
+- **arquivos auxiliares por categoria**, para facilitar análise manual, automação, dashboards e uso com IA
 
 ---
 
-## Supported Platforms
+## Objetivo
+
+O IncidentScope nasceu para resolver um problema real de operação:
+
+Em muitos incidentes, a coleta de evidências acontece de forma improvisada — comandos soltos, prints, logs copiados às pressas e muita interpretação no meio da pressão.
+
+A proposta do IncidentScope é transformar isso em um processo:
+
+- **padronizado**
+- **repetível**
+- **comparável**
+- **orientado a evidências**
+
+---
+
+## Principais Recursos
+
+- Coleta estruturada para **Windows e Linux**
+- Modo **interativo** e **não interativo**
+- Janela temporal por:
+  - data/hora exata
+  - últimas N horas
+  - duração a partir do início
+  - mês anterior completo
+- Perfis de ambiente
+- Níveis de coleta
+- Contexto do host
+- Contexto de virtualização
+- Coleta de eventos/logs
+- Serviços, rede, portas, memória, storage e timeline
+- Relatório principal `.log`
+- Resumo estruturado `.json`
+- Arquivos auxiliares por categoria
+
+---
+
+## Plataformas Suportadas
 
 ### Linux
-Designed for Linux distributions using **bash + systemd + journalctl**, including:
+Projetado para distribuições com **bash + systemd + journalctl**, como:
 
 - Rocky Linux
 - Oracle Linux
@@ -43,11 +64,13 @@ Designed for Linux distributions using **bash + systemd + journalctl**, includin
 - Ubuntu
 - Debian
 - Proxmox VE
-- other compatible Linux distributions
+- outras distribuições compatíveis
 
 ### Windows
-Designed for **Windows PowerShell 5.1** and **PowerShell 7+**, including:
+Projetado para:
 
+- Windows PowerShell **5.1**
+- PowerShell **7+**
 - Windows 10
 - Windows 11
 - Windows Server 2016
@@ -56,62 +79,133 @@ Designed for **Windows PowerShell 5.1** and **PowerShell 7+**, including:
 
 ---
 
-## Main Goals
+## Filosofia do Projeto
 
-- Standardize incident evidence collection
-- Reduce improvisation during outages
-- Improve troubleshooting consistency
-- Accelerate RCA preparation
-- Generate outputs useful for:
-  - human investigation
-  - dashboards
-  - automation
-  - AI-assisted analysis
+O IncidentScope não foi pensado como “um monte de comandos em sequência”.
 
----
+Ele foi construído como uma camada de **evidência operacional**.
 
-## Key Features
+Isso significa que a ferramenta busca entregar, de forma organizada:
 
-### Cross-platform approach
-Linux and Windows versions were built to follow the same philosophy:
-- structured evidence collection
-- best-effort contextual enrichment
-- human-readable report
-- structured JSON summary
-- auxiliary evidence files by category
-
-### Interactive and non-interactive execution
-IncidentScope can run:
-- interactively, prompting the analyst
-- non-interactively, using predefined parameters
-
-### Time window flexibility
-Supports:
-- exact `since/until`
-- relative windows (`--hours`)
-- calculated windows (`--duration-min`)
-- previous full month (`--mensal` / `--monthly`)
-
-### Operational context
-Collects context such as:
-- hostname / FQDN / IPs
-- OS and kernel information
-- timezone and current time
-- virtualization signals
-- role-aware context (especially in Windows)
-
-### Structured output
-Generates:
-- main report `.log`
-- structured summary `.json`
-- auxiliary files for host, network, storage, logs, ports, timeline, memory, services, etc.
+- identidade do host
+- contexto temporal
+- contexto do sistema operacional
+- contexto de virtualização
+- eventos e erros relevantes
+- pistas de serviços
+- evidências de rede e portas
+- snapshots de memória, CPU e storage
+- logons recentes
+- reboot / shutdown
+- timeline do incidente
+- resumo executivo
+- saída estruturada para correlação
 
 ---
 
-## Output
+## Saídas Geradas
 
-By default, IncidentScope writes results to a directory such as:
+Normalmente, o IncidentScope gera:
+
+- `relatorio-principal_*.log`
+- `resumo-estruturado_*.json`
+- `host_identity_*.log`
+- `tempo_*.log`
+- `virtualizacao_*.log`
+- `events_raw_*.log`
+- `erros_filtrados_*.log`
+- `timeline_*.log`
+- `services_*.log`
+- `network_*.log`
+- `dns_*.log`
+- `event_stats_*.log`
+- `portas_*.log`
+- `servicos_escuta_*.log`
+- `memoria_*.log`
+- `storage_*.log`
+- `ultimos_logons_*.log`
+- `ultimo_evento_energia_*.log`
+- `mudancas_*.log`
+- `collection_status_*.log`
+- `role_context_*.log`
+
+---
+
+## Casos de Uso
+
+- investigação de indisponibilidade
+- troubleshooting de serviço
+- análise de reboot inesperado
+- validação de portas e conectividade
+- análise operacional em Windows/Linux
+- preparação de material para RCA
+- apoio a automação e dashboards
+- enriquecimento de análise com IA
+
+---
+
+## Linux e Windows: mesma filosofia, coleta adaptada
+
+A versão Windows não é um script “paralelo” sem relação com o Linux.
+
+A ideia do projeto é manter a mesma filosofia em ambos os mundos:
 
 ### Linux
-```bash
-/tmp/analise-incidente-<CASEID|STAMP>
+Usa recursos nativos como:
+- `journalctl`
+- `systemctl`
+- `ss`
+- `ip`
+- `last`
+- `df`
+- `vmstat`
+- `iostat`
+- `sar` (quando disponível)
+
+### Windows
+Usa recursos nativos como:
+- `Get-WinEvent`
+- `Get-Service`
+- `Get-NetTCPConnection`
+- CIM / WMI
+- Event Viewer
+- contexto de PowerShell
+- eventos de logon, energia e serviço
+
+---
+
+## Observações Importantes
+
+O IncidentScope trabalha em modelo **best-effort**.
+
+Algumas informações dependem do que o sistema já registrou historicamente, como por exemplo:
+
+- motivo real de reboot
+- responsável por reboot
+- latência histórica de storage
+- pressão de memória ao longo do tempo
+- logons detalhados
+- mudanças administrativas anteriores
+
+Por isso, a qualidade da evidência pode variar conforme:
+- auditoria habilitada
+- retenção de logs
+- permissões disponíveis
+- ferramentas já instaladas no host
+
+---
+
+## Estrutura Sugerida do Repositório
+
+```text
+IncidentScope/
+├── linux/
+│   └── incidentscope-2.3.12-unix-based.sh
+├── windows/
+│   └── incidentscope-2.3.12-windows-based.ps1
+├── docs/
+│   ├── homologacao/
+│   ├── exemplos/
+│   └── releases/
+├── images/
+└── README.md
